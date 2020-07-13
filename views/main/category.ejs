@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Product-Online Shopper</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <% include ../partial/head %> 
+    </head>
+    <body>
+        <% include ../partial/navbar %>
+        
+        
+        <div class="fluid" id='container'>
+            <main role="main">
+                <% include ../partial/jumbotron %> 
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 my-category">
+                            <h1> Category <%= products[0].category.name %> </h1>
+                        </div>
+
+                        <% for( let i = 0; i < 24; i++ ) { %>
+                            <div class="col-md-4" style="margin-bottom: 30px;">
+                                <div class="card" style="width: 20rem;">
+                                    <a href="/api/products/single-product/<%= products[i]._id %>" style="text-decoration: none;">
+                                    <img class="card-img-top" src="<%= products[i].image %> "/>
+                                    </a>
+                                    <div class="card-body">
+                                        <h5 class="card-title"> <%= products[i].name %> </h5>
+                                        <p class="card-text"> $<%= products[i].price %> </p>
+                                        <br/>
+                                        <a href=" " class="btn btn-success"> Buy Now</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        <% } %>
+
+                    </div>
+                </div>           
+            </main>
+            <% include ../partial/footer %> 
+
+        </div>
+        <% include ../partial/scripts %>
+        <script src="" async defer></script>
+    </body>
+</html>

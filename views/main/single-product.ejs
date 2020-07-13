@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> <%= product.name %> </title>
+    <% include ../partial/head %>
+</head>
+<style>
+    .btn-product {
+      width: 100%;
+    }
+    .single-product {
+      margin-top: 100px;
+    }
+    .caption {
+      padding-top: 40px;
+    }
+    .item-count {
+      border: 1px solid lightGray;
+      font-weight: 400;
+    }
+  </style>
+<body>
+    <% include ../partial/navbar %>
+
+    <div class="container single-product">
+        <hr class="colorgraph single-hr" />
+        <div class="row">
+            <div class="col-md-6 col-xs-6">
+                <div class="thumbnail">
+                    <img src="<%= product.image%>" style="height: 100%; width: 100%;" />
+
+                </div>
+                <div class="caption">
+                    <h3> <%= product.name %> </h3>
+                    <p><%= product.description %> </p>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-6 price" style="padding-top: 100px; margin: 0 auto;">
+                <h3>Price Per Item: <label for="price"><%= product.price %> </label></h3>
+                <form method="post" action="/api/cart/<%= product._id %>" aria-label="...">
+                  <div class="btn-group" role="group">
+                    <input type="hidden" name="quantity" id="quantity" value="1" />
+                    <button
+                      class="item-count"
+                      type="button"
+                      id="minus"
+                      class="btn"
+                    >
+                      -
+                    </button>
+                    <button
+                      class="item-count"
+                      type="button"
+                      id="total"
+                      class="btn"
+                    >
+                      1
+                    </button>
+                    <button
+                      class="item-count"
+                      type="button"
+                      id="plus"
+                      class="btn"
+                    >
+                      +
+                    </button>
+                  </div>
+                  <div class="form-group">
+                    <input
+                      type="hidden"
+                      name="product_id"
+                      id="product"
+                      value="<%=product._id%>"
+                    />
+                    <input
+                      type="hidden"
+                      name="priceHidden"
+                      id="priceHidden"
+                      value="<%=product.price%>"
+                    />
+                    <input
+                      style="font-weight:400;"
+                      type="text"
+                      name="item"
+                      class="form-control"
+                      value="<%=product.name%>"
+                      readonly
+                    />
+                    <input
+                      style="font-weight:400;"
+                      type="text"
+                      name="priceValue"
+                      id="priceValue"
+                      class="form-control"
+                      value="<%=product.price%>"
+                      readonly
+                    />
+                  </div>
+                  <%if (user){%>
+                  <button type="submit" class="btn btn-primary btn-lg">
+                    Add to Cart
+                  </button>
+                  <%} else {%>
+                  <a href="/api/users/register" class="btn btn-warning btn-lg"
+                    >Signup to Begin Buying</a
+                  >
+                  <%} %>
+                </form>
+            </div>
+        </div>
+        <hr style="margin-top: 40px;" class="colorgraph single-hr" />
+    </div>
+    <% include ../partial/footer %> 
+    <% include ../partial/scripts %>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <% include ../partial/head %>
+        
+        <title>Login-Online Shopper</title>
+        
+    </head>
+    <body>
+        <% include ../partial/navbar %>
+        <div class='container profile'>
+            <div class='row'>
+                <div class ='col-sm-6 offset-sm-3 col-md-6 offset-md-3'>
+                    <hr class ='colorgraph' />
+                    <br />
+                    <h1> <%= user.profile.name %> </h1>
+                    <img src='https://image.shutterstock.com/image-vector/default-avatar-profile-icon-grey-600w-767771860.jpg' alt='...' class ='img-circle img-responsive img-center profile-imageholder'>
+                    <br /> <br />
+                    <p> Name: <%= user.profile.name %> </p>
+                    <p> Email: <%= user.email %> </p>
+                    <p> Address: <%= user.address %> </p>
+                    <a href="/api/users/update-profile" class="btn btn-primary btn-lg">Edit</a>
+                </div>
+            </div>
+        </div>
+        <% include ../partial/scripts %> 
+        <script src="" async defer></script>
+    </body>
+</html>
